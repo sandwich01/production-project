@@ -1,13 +1,12 @@
+import {ResolveOptions} from "webpack";
+import {BuildOptions} from "./types/config";
 
-import { ResolveOptions } from 'webpack';
-
-/**
- * Функция создающая конфигурацию резолверов для Webpack
- * @returns Настройки резолюции модулей
- */
-export function buildResolvers(): ResolveOptions {
-  return {
-    // Автоматически разрешает эти расширения без указания в импортах
-    extensions: ['.tsx', '.ts', '.js'],
-  };
+export function buildResolvers(options: BuildOptions): ResolveOptions {
+    return {
+        extensions: ['.tsx', '.ts', '.js'],
+        preferAbsolute: true,
+        modules: [options.paths.src, 'node_modules'],
+        mainFiles: ['index'],
+        alias: {}
+    }
 }

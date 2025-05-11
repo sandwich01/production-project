@@ -1,47 +1,21 @@
 
-/**
- * Режим сборки проекта
- */
 export type BuildMode = 'production' | 'development';
 
-/**
- * Пути, используемые в конфигурации сборки
- */
 export interface BuildPaths {
-    /** Точка входа (index.ts) */
     entry: string;
-
-    /** Выходная директория сборки */
     build: string;
-
-    /** Путь к HTML-файлу */
     html: string;
+    src: string;
 }
 
-/**
- * Основные параметры сборки
- */
-export interface BuildOptions {
-    /** Режим сборки */
+export interface BuildEnv {
     mode: BuildMode;
-
-    /** Объект с путями */
-    paths: BuildPaths;
-
-    /** Флаг режима разработки */
-    isDev: boolean;
-
-    /** Порт для dev сервера */
     port: number;
 }
 
-/**
- * Переменные окружения для сборки
- */
-export interface BuildEnv {
-    /** Режим запуска */
+export interface BuildOptions {
     mode: BuildMode;
-
-    /** Порт для запуска */
+    paths: BuildPaths;
+    isDev: boolean;
     port: number;
 }
