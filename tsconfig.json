@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+
+    // Требует указывать типы явно
+    "noImplicitAny": true,
+
+    // Используем ESM (ES6 modules)
+    "module": "ESNext",
+
+    // Компилируем в ES5 для поддержки старых браузеров
+    "target": "es5",
+
+    // Поддержка JSX в React
+    "jsx": "react-jsx",
+
+    // Разрешает использование JS-файлов в проекте
+    "allowJs": true,
+
+    // Используем Node.js резолвер модулей
+    "moduleResolution": "node",
+
+    // Базовый путь для абсолютных импортов
+    "baseUrl": ".",
+
+    // Позволяет импортировать CommonJS-модули как ESModules
+    "esModuleInterop": true,
+
+    // Разрешает использовать дефолтные импорты из модулей без них
+    "allowSyntheticDefaultImports": true
+  },
+
+  // Конфиг для ts-node — использует CommonJS для запуска скриптов
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
