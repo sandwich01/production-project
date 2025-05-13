@@ -2,6 +2,8 @@ import { AboutPage } from "pages/AboutPage"
 import { MainPage } from "pages/MainPage"
 import { RouteProps } from "react-router-dom"
 
+//test
+
 /**
  * Маршруты приложения.
  * Используется для унифицированного обращения к маршрутам в коде.
