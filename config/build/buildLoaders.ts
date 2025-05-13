@@ -1,9 +1,23 @@
 import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import {BuildOptions} from "./types/config";
+import { BuildOptions } from "./types/config";
 
-export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
+/**
+ * Функция, возвращающая массив webpack-loader'ов на основе режима разработки.
+ *
+ * @param {BuildOptions} options - Опции сборки
+ * @param {boolean} options.isDev - Режим разработки (development)
+ * @returns {webpack.RuleSetRule[]} Массив правил (лоадеров) для webpack
+ */
+export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
 
+    /**
+    * Обрабатывает .scss/.sass файлы, поддерживает CSS-модули и автопрефиксы.
+    *
+    * В dev режиме сборки — инжектит стили через style
+    * 
+    * В prod режиме сборки — выносит в отдельные файлы
+    */
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
@@ -23,14 +37,41 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
         ],
     }
 
-    // Если не используем тайпскрипт - нужен babel-loader
+
+    /**
+    * Компилирует TypeScript в JavaScript. Поддерживает .ts и .tsx файлы.
+    * 
+    * Если не используем тайпскрипт - нужен babel-loader
+    */
     const typescriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
     }
 
+    /**
+    * Преобразует SVG в React-компоненты через SVGR , чтобы использовать как JSX.
+    */
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack']
+    }
+
+    /**
+     * Загружает изображения и возвращает пути к ним.
+     * 
+     * Используется для ресурсов, отличных от SVG.
+     */
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [{
+            loader: 'fileLoader'
+        }]
+    }
+
     return [
+        fileLoader,
+        svgLoader,
         typescriptLoader,
         cssLoader,
     ]
