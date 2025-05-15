@@ -30,6 +30,9 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         // Подключение глобальных переменных для всего проекта
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev)
-        })
+        }),
+
+        // Подключение плагина для перерисовки контента при разработке без перезагрузки страницы в браузере
+        new webpack.HotModuleReplacementPlugin()
     ];
 }
