@@ -11,7 +11,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
  * @param {string} options.paths.html - Путь к HTML-шаблону
  * @returns {webpack.WebpackPluginInstance[]} Массив экземпляров webpack-плагинов
  */
-export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
     return [
         // Генерирует HTML-файл на основе шаблона и внедряет туда бандлы
         new HtmlWebpackPlugin({
@@ -26,5 +26,10 @@ export function buildPlugins({ paths }: BuildOptions): webpack.WebpackPluginInst
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
         }),
+
+        // Подключение глобальных переменных для всего проекта
+        new webpack.DefinePlugin({
+            __IS_DEV__: JSON.stringify(isDev)
+        })
     ];
 }
