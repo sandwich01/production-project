@@ -69,9 +69,37 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         }]
     }
 
+    /**
+     * Запуск транспилятора babel с плагином для сборки ключей переводов
+     * 
+     */
+    const babelLoader = {
+        test: /\.(ts|js|jsx|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: ['@babel/preset-env'],
+                "plugins": [
+                    [
+                        "i18next-extract",
+                        {
+                            locales: ['ru', 'en'],
+                            keyAsDefaultValue: true
+                        }
+                    ],
+                ]
+            }
+        }
+    }
+
+    /**
+     *  Порядок loaders очень важен для сборки!!!
+     */
     return [
         fileLoader,
         svgLoader,
+        babelLoader,
         typescriptLoader,
         cssLoader,
     ]
