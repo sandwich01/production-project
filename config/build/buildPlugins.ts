@@ -1,7 +1,7 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import webpack from "webpack";
-import { BuildOptions } from "./types/config";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BuildOptions } from './types/config';
 
 /**
  * Функция, возвращающая массив плагинов для webpack.
@@ -29,10 +29,10 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
 
         // Подключение глобальных переменных для всего проекта
         new webpack.DefinePlugin({
-            __IS_DEV__: JSON.stringify(isDev)
+            __IS_DEV__: JSON.stringify(isDev),
         }),
 
         // Подключение плагина для перерисовки контента при разработке без перезагрузки страницы в браузере
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
     ];
 }

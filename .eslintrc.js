@@ -27,12 +27,13 @@ module.exports = {
     plugins: [
         'react', // Плагин для проверки React кода
         '@typescript-eslint', // Поддержка правил TypeScript
+        'i18next',
     ],
 
     // Настройки правил ESLint:
     rules: {
         // Отступы в JSX — 4 пробела и игнорируем тернарные операторы
-        'react/jsx-indent': [2, { indentMode: 4, ignoreTernaryOperator: true }],
+        'react/jsx-indent': [2, 4],
         // Отступы свойств в JSX — 4 пробела
         'react/jsx-indent-props': [2, 4],
         // Общий отступ в JS — 4 пробела
@@ -47,8 +48,6 @@ module.exports = {
         'no-unused-vars': 'warn',
         // Не требовать defaultProps у React компонентов, чтобы использовать именованые
         'react/require-default-props': 'off',
-        // Не требовать импорт React в файлах с JSX (React 17+)
-        'react/react-in-jsx-scope': 'off',
         // Предупредить при использовании {...props} в JSX
         'react/jsx-props-no-spreading': 'warn',
         // Не ограничивать как писать функциональные компоненты
@@ -63,6 +62,12 @@ module.exports = {
         'no-underscore-dangle': 'off',
         // Разрешить любой тип перевода строки (LF или CRLF)
         'linebreak-style': ['error', 'windows'], // можно заменить на 'unix' при желании
+        // Выводим ошибку при отсутствии перевода внутри файлов jsx
+        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        // Проверка максимальной длины скроки кода
+        'max-len': ['error', { code: 180 }],
+        // Не требовать импорт React в файлах с JSX (React 17+)
+        'react/react-in-jsx-scope': 'off',
     },
 
     // Глобальные переменные проекта

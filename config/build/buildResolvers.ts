@@ -1,5 +1,5 @@
-import { ResolveOptions } from "webpack";
-import { BuildOptions } from "./types/config";
+import { ResolveOptions } from 'webpack';
+import { BuildOptions } from './types/config';
 
 /**
  * Функция, возвращающая настройки резолвера для webpack.
@@ -24,6 +24,6 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
         mainFiles: ['index'],
 
         // Алиасы для путей (пока пустые)
-        alias: {}
+        alias: {},
     };
 }

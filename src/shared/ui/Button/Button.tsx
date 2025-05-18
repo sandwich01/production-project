@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, Children, FC } from "react";
+import { ButtonHTMLAttributes, Children, FC } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Button.module.scss';
-import { classNames } from "shared/lib/classNames/classNames";
 
 /**
  * Перечисление доступных тем для кнопки.
@@ -46,6 +46,7 @@ const Button: FC<ButtonProps> = (props) => {
 
     return (
         <button
+            type="button"
             className={classNames(cls.Button, {}, [className, cls[theme]])}
             {...otherProps}
         >
