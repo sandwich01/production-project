@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getData Валидные значения getData 1`] = `
+[
+  "1",
+  "2",
+]
+`;
