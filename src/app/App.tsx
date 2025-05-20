@@ -1,19 +1,18 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Navbar } from 'widgets/Navbar';
 import './styles/index.scss';
 import { Sidebar } from 'widgets/Sidebar';
 import { Suspense } from 'react';
+import PageLoader from 'widgets/PageLoader/PageLoader';
 import { AppRouter } from './providers/router';
 
 const App = () => {
     const { theme } = useTheme();
-    const { t } = useTranslation();
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <Suspense fallback={t('Loading...')}>
+            <Suspense fallback={<PageLoader />}>
                 <Navbar />
                 <div className="content-page">
                     <Sidebar />

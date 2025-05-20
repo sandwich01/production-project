@@ -1,7 +1,7 @@
 import { FC, Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Routes, Route } from 'react-router-dom';
 import { routeConfig } from 'shared/config/routeConfig/routeConfig';
+import PageLoader from 'widgets/PageLoader/PageLoader';
 
 /**
  * Компонент маршрутизации приложения.
@@ -11,26 +11,22 @@ import { routeConfig } from 'shared/config/routeConfig/routeConfig';
  * @component
  * @returns {JSX.Element} Отрисовывает <Routes> с динамически подключенными маршрутами.
  */
-const AppRouter: FC = () => {
-    const { t } = useTranslation();
-
-    return (
-        <Suspense fallback={<div>{t('Loading...')}</div>}>
-            <Routes>
-                {Object.values(routeConfig).map(({ element, path }) => (
-                    <Route
-                        key={path}
-                        path={path}
-                        element={(
-                            <div className="page-wrapper">
-                                {element}
-                            </div>
-                        )}
-                    />
-                ))}
-            </Routes>
-        </Suspense>
-    );
-};
+const AppRouter: FC = () => (
+    <Suspense fallback={<PageLoader />}>
+        <Routes>
+            {Object.values(routeConfig).map(({ element, path }) => (
+                <Route
+                    key={path}
+                    path={path}
+                    element={(
+                        <div className="page-wrapper">
+                            {element}
+                        </div>
+                    )}
+                />
+            ))}
+        </Routes>
+    </Suspense>
+);
 
 export default AppRouter;

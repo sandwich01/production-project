@@ -24,6 +24,7 @@ ENV/
 /build
 /target
 /out
+/.vscode
 
 # Логи и базы данных
 *.log
