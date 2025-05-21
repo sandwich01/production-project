@@ -1,5 +1,8 @@
 {
     "Русский": "English",
     "Главная": "Main",
-    "О сайте": "About us"
+    "О сайте": "About us",
+    "Произошла непредвиденная ошибка": "An unexpected error has occurred",
+    "Обновить страницу": "Refresh the page",
+    "throw error": "throw error"
 }
