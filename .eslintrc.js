@@ -1,3 +1,5 @@
+const { overridePresets } = require("@storybook/builder-webpack5");
+
 module.exports = {
     // Указывает глобальные переменные окружения
     env: {
@@ -63,8 +65,8 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         // Разрешить использование подчеркиваний в начале переменных (_private)
         'no-underscore-dangle': 'off',
-        // Разрешить любой тип перевода строки (LF или CRLF)
-        'linebreak-style': ['error', 'windows'], // можно заменить на 'unix' при желании
+        // Отключаем проверку перехода строки
+        'linebreak-style': off, // можно заменить на 'unix' при желании
         // Выводим ошибку при отсутствии перевода внутри файлов jsx
         'i18next/no-literal-string': ['error', { markupOnly: true }],
         // Проверка максимальной длины скроки кода
@@ -77,4 +79,12 @@ module.exports = {
     globals: {
         __IS_DEV__: true, // Например, для режима разработки
     },
+    overrides: [
+        {
+            files: ['**/src/**/*.test.{ts,tsx}'],
+            rules: {
+                'i18next/no-literal-string': 'off'
+            }
+        }
+    ]
 };

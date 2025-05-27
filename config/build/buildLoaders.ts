@@ -61,7 +61,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
      * Используется для ресурсов, отличных от SVG.
      */
     const fileLoader = {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|woff2|woff)$/i,
         use: [{
             loader: 'fileLoader',
         }],
