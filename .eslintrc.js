@@ -1,18 +1,16 @@
-const { overridePresets } = require("@storybook/builder-webpack5");
-
 module.exports = {
     // Указывает глобальные переменные окружения
     env: {
         browser: true, // Доступность браузерных глобальных переменных (window, document и т.д.)
         es2021: true, // Использовать поддержку ECMAScript 2021
-        "jest/globals": true //Используем jest для тестирования
+        jest: true //Используем jest для тестирования
     },
 
     // Расширяем конфигурацию из популярных шаблонов:
     extends: [
         'plugin:react/recommended', // Рекомендованные правила для React от ESLint
         'airbnb', // Стандарт Airbnb (очень популярный стиль)
-        "plugin:jest/recommended"
+        "plugin:i18next/recommended"
     ],
 
     // Парсер для TypeScript:
@@ -66,9 +64,15 @@ module.exports = {
         // Разрешить использование подчеркиваний в начале переменных (_private)
         'no-underscore-dangle': 'off',
         // Отключаем проверку перехода строки
-        'linebreak-style': off, // можно заменить на 'unix' при желании
+        'linebreak-style': 'off', // можно заменить на 'unix' при желании
         // Выводим ошибку при отсутствии перевода внутри файлов jsx
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': [
+            'error',
+            {
+                markupOnly: true,
+                ignoreAttribute: ['data-testid', 'to'],
+            },
+        ],
         // Проверка максимальной длины скроки кода
         'max-len': ['error', { code: 180 }],
         // Не требовать импорт React в файлах с JSX (React 17+)
@@ -83,8 +87,8 @@ module.exports = {
         {
             files: ['**/src/**/*.test.{ts,tsx}'],
             rules: {
-                'i18next/no-literal-string': 'off'
-            }
-        }
-    ]
+                'i18next/no-literal-string': 'off',
+            },
+        },
+    ],
 };
