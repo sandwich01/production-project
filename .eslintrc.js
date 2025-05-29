@@ -3,14 +3,14 @@ module.exports = {
     env: {
         browser: true, // Доступность браузерных глобальных переменных (window, document и т.д.)
         es2021: true, // Использовать поддержку ECMAScript 2021
-        jest: true //Используем jest для тестирования
+        jest: true, // Используем jest для тестирования
     },
 
     // Расширяем конфигурацию из популярных шаблонов:
     extends: [
         'plugin:react/recommended', // Рекомендованные правила для React от ESLint
         'airbnb', // Стандарт Airbnb (очень популярный стиль)
-        "plugin:i18next/recommended"
+        'plugin:i18next/recommended',
     ],
 
     // Парсер для TypeScript:
@@ -30,7 +30,7 @@ module.exports = {
         'react', // Плагин для проверки React кода
         '@typescript-eslint', // Поддержка правил TypeScript
         'i18next', // Плагин перводов
-        "jest" // Плагин тестирования
+        'jest', // Плагин тестирования
     ],
 
     // Настройки правил ESLint:
