@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, Children, FC } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Button.module.scss';
 
@@ -8,6 +8,7 @@ import cls from './Button.module.scss';
  */
 export enum ThemeButton {
     CLEAR = 'clear',
+    OUTLINE = 'outline',
 }
 
 /**
@@ -18,7 +19,7 @@ export enum ThemeButton {
  * @property {string} [className] - Дополнительный CSS-класс для кастомизации
  * @property {ThemeButton} [theme] - Тема оформления кнопки (например: clear)
  */
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     className?: string;
     theme?: ThemeButton;
 }
@@ -38,8 +39,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  */
 const Button: FC<ButtonProps> = (props) => {
     const {
-        children,
         className,
+        children,
         theme,
         ...otherProps
     } = props;

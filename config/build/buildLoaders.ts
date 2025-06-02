@@ -1,6 +1,6 @@
 import webpack from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BuildOptions } from './types/config';
+import { buildCssLoader } from './loaders/buildCssLoader';
 
 /**
  * Функция, возвращающая массив webpack-loader'ов на основе режима разработки.
@@ -10,31 +10,7 @@ import { BuildOptions } from './types/config';
  * @returns {webpack.RuleSetRule[]} Массив правил (лоадеров) для webpack
  */
 export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
-    /**
-    * Обрабатывает .scss/.sass файлы, поддерживает CSS-модули и автопрефиксы.
-    *
-    * В dev режиме сборки — инжектит стили через style
-    *
-    * В prod режиме сборки — выносит в отдельные файлы
-    */
-    const cssLoader = {
-        test: /\.s[ac]ss$/i,
-        use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            {
-                loader: 'css-loader',
-                options: {
-                    modules: {
-                        auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-                        localIdentName: isDev
-                            ? '[path][name]__[local]--[hash:base64:5]'
-                            : '[hash:base64:8]',
-                    },
-                },
-            },
-            'sass-loader',
-        ],
-    };
+    const cssLoader = buildCssLoader(isDev);
 
     /**
     * Компилирует TypeScript в JavaScript. Поддерживает .ts и .tsx файлы.

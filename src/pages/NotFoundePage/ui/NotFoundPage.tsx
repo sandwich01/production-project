@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import cls from './NotFoundePage.module.scss';
+import cls from './NotFoundPage.module.scss';
 
-interface NotFoundePageProps {
+interface NotFoundPageProps {
     className?: string;
 }
 
 /**
- * Компонент NotFoundePage (Страница не найдена)
+ * Компонент NotFoundPage (Страница не найдена)
  *
  * Отображает страницу с сообщением "Страница не найдена". Поддерживает кастомизацию класса.
  * Используется как fallback-страница при переходе по несуществующему маршруту.
@@ -19,10 +19,10 @@ interface NotFoundePageProps {
  *
  * @example
  * return (
- *   <NotFoundePage className="custom-not-found" />
+ *   <NotFoundPage className="custom-not-found" />
  * )
  */
-const NotFoundePage: FC<NotFoundePageProps> = (props) => {
+const NotFoundPage: FC<NotFoundPageProps> = (props) => {
     const {
         className,
     } = props;
@@ -30,10 +30,10 @@ const NotFoundePage: FC<NotFoundePageProps> = (props) => {
     const { t } = useTranslation();
 
     return (
-        <div className={classNames(cls.NotFoundePage, {}, [className])}>
+        <div className={classNames(cls.NotFoundPage, {}, [className])}>
             {t('Страница не найдена')}
         </div>
     );
 };
 
-export default NotFoundePage;
+export default NotFoundPage;
