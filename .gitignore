@@ -35,8 +35,8 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Артефакты CI/CD
-/.github/workflows/*.yml
+# # Артефакты CI/CD
+# /.github/workflows/*.yml
 
 # VSCode и другие редакторы
 .vscode/
