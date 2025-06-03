@@ -13,13 +13,13 @@ import { BuildOptions } from './types/config';
  * @returns {webpack.WebpackPluginInstance[]} Массив экземпляров webpack-плагинов
  */
 export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
-    return [
+    const plugins = [
         // Генерирует HTML-файл на основе шаблона и внедряет туда бандлы
         new HtmlWebpackPlugin({
             template: paths.html,
         }),
 
-        // Отображает прогресс сборки в консоли
+         // Отображает прогресс сборки в консоли
         new webpack.ProgressPlugin(),
 
         // Извлекает CSS в отдельные файлы с хэшами для кэширования
@@ -32,11 +32,15 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
         }),
-
-        // Подключение плагина для перерисовки контента при разработке без перезагрузки страницы в браузере
-        new webpack.HotModuleReplacementPlugin(),
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-        }),
     ];
+
+    if (isDev) {
+        // Подключение плагина для перерисовки контента при разработке без перезагрузки страницы в браузере
+        plugins.push(new webpack.HotModuleReplacementPlugin());
+        plugins.push(new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+        }));
+    }
+
+    return plugins;
 }
