@@ -1,6 +1,5 @@
-import { FC } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import Loader from 'shared/Loader/Loader';
+import { Loader } from 'shared/Loader/Loader';
 import cls from './PageLoader.module.scss';
 
 interface PageLoaderProps {
@@ -22,16 +21,8 @@ interface PageLoaderProps {
  *   <PageLoader className="custom-loader" />
  * )
  */
-const PageLoader: FC<PageLoaderProps> = (props) => {
-    const {
-        className,
-    } = props;
-
-    return (
-        <div className={classNames(cls.PageLoader, {}, [className])}>
-            <Loader />
-        </div>
-    );
-};
-
-export default PageLoader;
+export const PageLoader = ({ className }: PageLoaderProps) => (
+    <div className={classNames(cls.PageLoader, {}, [className])}>
+        <Loader />
+    </div>
+);

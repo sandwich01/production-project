@@ -6,8 +6,9 @@ declare module '*.scss' {
     export = classNames;
 }
 
-declare const __IS_DEV__: boolean;
-
+declare module '*.png';
+declare module '*.jpg';
+declare module '*.jpeg';
 declare module '*.svg' {
     import React from 'react';
 
@@ -15,6 +16,4 @@ declare module '*.svg' {
     export default SVG;
 }
 
-declare module '*.png'
-declare module '*.jpeg'
-declare module '*.jpg'
+declare const __IS_DEV__: boolean;

@@ -1,6 +1,6 @@
-import { FC } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Link, LinkProps } from 'react-router-dom';
+import { FC } from 'react';
 import cls from './AppLink.module.scss';
 
 /**
@@ -13,13 +13,6 @@ export enum AppLinkTheme {
     RED = 'red',
 }
 
-/**
- * Тип пропсов для компонента AppLink.
- * Наследуется от стандартных LinkProps из react-router-dom, с добавлением пользовательских полей.
- *
- * @property {string} [className] - Дополнительный CSS-класс для кастомизации
- * @property {AppLinkTheme} [theme] - Тема оформления ссылки (primary / secondary)
- */
 interface AppLinkProps extends LinkProps {
     className?: string;
     theme?: AppLinkTheme;
@@ -39,8 +32,7 @@ interface AppLinkProps extends LinkProps {
  * @example
  * <AppLink to="/about" theme={AppLinkTheme.secondary}>О сайте</AppLink>
  */
-
-const AppLink: FC<AppLinkProps> = (props) => {
+export const AppLink: FC<AppLinkProps> = (props) => {
     const {
         to,
         className,
@@ -52,12 +44,10 @@ const AppLink: FC<AppLinkProps> = (props) => {
     return (
         <Link
             to={to}
-            className={classNames(cls.AppLink, {}, [className, cls[theme]])}
+            className={classNames(cls.AppLink, { [cls[theme]]: true }, [className])}
             {...otherProps}
         >
             {children}
         </Link>
     );
 };
-
-export default AppLink;

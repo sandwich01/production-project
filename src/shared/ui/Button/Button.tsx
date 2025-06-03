@@ -1,27 +1,29 @@
-import { ButtonHTMLAttributes, FC } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { ButtonHTMLAttributes, FC } from 'react';
 import cls from './Button.module.scss';
 
 /**
  * Перечисление доступных тем для кнопки.
  * Позволяет задать стиль внешнего вида через CSS-классы.
  */
-export enum ThemeButton {
+export enum ButtonTheme {
     CLEAR = 'clear',
     OUTLINE = 'outline',
+    BACKGROUND = 'background',
+    BACKGROUND_INVERTED = 'backgroundInverted',
 }
 
-/**
- * Интерфейс свойств для компонента Button.
- *
- * @interface
- * @extends ButtonHTMLAttributes<HTMLButtonElement> - Все стандартные атрибуты HTML кнопки
- * @property {string} [className] - Дополнительный CSS-класс для кастомизации
- * @property {ThemeButton} [theme] - Тема оформления кнопки (например: clear)
- */
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+export enum ButtonSize {
+    M = 'size_m',
+    L = 'size_l',
+    XL = 'size_xl',
+}
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
-    theme?: ThemeButton;
+    theme?: ButtonTheme;
+    square?: boolean;
+    size?: ButtonSize;
 }
 
 /**
@@ -31,29 +33,35 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
  * @component
  * @param {React.ReactNode} children - Содержимое кнопки
  * @param {string} [className] - Дополнительный класс для стилизации
- * @param {ThemeButton} [theme] - Тема кнопки (по умолчанию: clear)
+ * @param {ButtonTheme} [theme] - Тема кнопки (по умолчанию: clear)
  * @param {object} [otherProps] - Любые другие props, поддерживаемые тегом <button>
  *
  * @example
  * <Button theme={ThemeButton.CLEAR}>Нажми меня</Button>
  */
-const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = (props) => {
     const {
         className,
         children,
         theme,
+        square,
+        size = ButtonSize.M,
         ...otherProps
     } = props;
+
+    const mods: Record<string, boolean> = {
+        [cls[theme]]: true,
+        [cls.square]: square,
+        [cls[size]]: true,
+    };
 
     return (
         <button
             type="button"
-            className={classNames(cls.Button, {}, [className, cls[theme]])}
+            className={classNames(cls.Button, mods, [className])}
             {...otherProps}
         >
             {children}
         </button>
     );
 };
-
-export default Button;

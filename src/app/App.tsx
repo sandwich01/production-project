@@ -4,7 +4,7 @@ import { Navbar } from 'widgets/Navbar';
 import './styles/index.scss';
 import { Sidebar } from 'widgets/Sidebar';
 import { Suspense } from 'react';
-import PageLoader from 'widgets/PageLoader/PageLoader';
+import { PageLoader } from 'widgets/PageLoader/PageLoader';
 import { AppRouter } from './providers/router';
 
 const App = () => {
