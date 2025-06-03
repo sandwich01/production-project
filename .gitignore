@@ -38,6 +38,8 @@ Thumbs.db
 # # Артефакты CI/CD
 # /.github/workflows/*.yml
 
+./storybook-static
+
 # VSCode и другие редакторы
 .vscode/
 .idea/
