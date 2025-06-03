@@ -19,7 +19,7 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
             template: paths.html,
         }),
 
-         // Отображает прогресс сборки в консоли
+        // Отображает прогресс сборки в консоли
         new webpack.ProgressPlugin(),
 
         // Извлекает CSS в отдельные файлы с хэшами для кэширования
