@@ -10,13 +10,6 @@ export enum Theme {
     DARK = 'dark',
 }
 
-/**
- * Тип пропсов для контекста темы.
- *
- * @interface
- * @property {Theme} [theme] - Текущая активная тема
- * @property {(theme: Theme) => void} [setTheme] - Функция для изменения темы
- */
 export interface ThemeContextProps {
     theme?: Theme;
     setTheme?: (theme: Theme) => void;

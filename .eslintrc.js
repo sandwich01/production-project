@@ -31,6 +31,7 @@ module.exports = {
         '@typescript-eslint', // Поддержка правил TypeScript
         'i18next', // Плагин перводов
         'jest', // Плагин тестирования
+        'react-hooks', // Плагин для обработки хуков в FC
     ],
 
     // Настройки правил ESLint:
@@ -77,6 +78,10 @@ module.exports = {
         'max-len': ['error', { code: 180 }],
         // Не требовать импорт React в файлах с JSX (React 17+)
         'react/react-in-jsx-scope': 'off',
+        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
     },
 
     // Глобальные переменные проекта
@@ -85,9 +90,10 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['**/src/**/*.test.{ts,tsx}'],
+            files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
                 'i18next/no-literal-string': 'off',
+                'max-len': 'off',
             },
         },
     ],

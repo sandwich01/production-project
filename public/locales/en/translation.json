@@ -1,8 +1,14 @@
 {
-    "English": "Russian",
-    "Main": "Главная",
-    "About us": "О сайте",
-    "An unexpected error has occurred": "Произошла непредвиденная ошибка",
-    "Refresh the page": "Обновить страницу",
-    "throw error": "throw error"
+  "Lorem ipsum dolor sit amet, consectetur adipisicing elit": "Aliquid commodi consequatur eligendi impedit incidunt necessitatibus possimus quis saepe sunt totam",
+  "throw error": "Вызвать ошибку",
+  "Login": "Войти",
+  "Home": "Главная",
+  "Main page": "Главная страница",
+  "About site": "О сайте",
+  "About site123123": "О сайте123123",
+  "Refresh page": "Обновить страницу",
+  "Toggle": "Переключить",
+  "An unexpected error occurred": "Произошла непредвиденная ошибка",
+  "Page not found": "Страница не найдена",
+  "Language": "Язык"
 }
