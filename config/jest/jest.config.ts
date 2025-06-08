@@ -1,6 +1,6 @@
 import path from 'path';
 
-export default {    
+export default {
     globals: {
         __IS_DEV__: true,
     },
