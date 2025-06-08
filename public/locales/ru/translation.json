@@ -10,5 +10,7 @@
   "Переключить": "Toggle",
   "Произошла непредвиденная ошибка": "An unexpected error occurred",
   "Страница не найдена": "Page not found",
-  "Язык": "Language"
+  "Язык": "Language",
+  "increment": "increment",
+  "decrement": "decrement"
 }

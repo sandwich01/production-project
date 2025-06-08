@@ -82,6 +82,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
+        'no-param-reassign': 'off',
     },
 
     // Глобальные переменные проекта
