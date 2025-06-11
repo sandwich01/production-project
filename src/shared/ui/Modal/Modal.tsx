@@ -11,21 +11,48 @@ interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
+    lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
 
+/**
+ * Компонент модального окна (Modal).
+ *
+ * @param {ModalProps} props - Свойства компонента.
+ * @param {string} [props.className] - Дополнительный CSS-класс для стилизации.
+ * @param {ReactNode} [props.children] - Содержимое модального окна.
+ * @param {boolean} [props.isOpen] - Флаг, определяющий, открыто ли окно.
+ * @param {() => void} [props.onClose] - Колбэк, вызываемый при закрытии модального окна.
+ * @param {boolean} [props.lazy] - Если true — модалка не монтируется в DOM, пока не откроется (ленивая загрузка).
+ *
+ * Поведение:
+ * - При `isOpen = true` модалка появляется с анимацией.
+ * - При нажатии Escape или клике вне окна вызывается `onClose` с задержкой (анимация закрытия).
+ * - Компонент использует `Portal` для рендера в отдельный DOM-узел (вне основного потока).
+ * - Закрытие сопровождается плавной анимацией (`ANIMATION_DELAY = 300` мс).
+ * - `classNames` и тема из `useTheme` добавляют стили и модификаторы.
+ * - Обработчик клика внутри модального контента предотвращает закрытие окна.
+ */
 export const Modal = (props: ModalProps) => {
     const {
         className,
         children,
         isOpen,
         onClose,
+        lazy,
     } = props;
 
     const [isClosing, setIsClosing] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>();
     const { theme } = useTheme();
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
 
     const closeHandler = useCallback(() => {
         if (onClose) {
@@ -61,12 +88,15 @@ export const Modal = (props: ModalProps) => {
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
-        [cls[theme]]: true,
     };
+
+    if (lazy && !isMounted) {
+        return null;
+    }
 
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className])}>
+            <div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
                 <div className={cls.overlay} onClick={closeHandler}>
                     <div
                         className={cls.content}

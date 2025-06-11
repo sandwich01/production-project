@@ -11,6 +11,8 @@
   "An unexpected error occurred": "Произошла непредвиденная ошибка",
   "Page not found": "Страница не найдена",
   "Language": "Язык",
-  "increment": "increment",
-  "decrement": "decrement"
+  "Increment": "Увеличить",
+  "Decrement": "Уменьшить",
+  "Enter the user's name": "Введите имя пользователя",
+  "Enter the password": "Введите пароль"
 }
