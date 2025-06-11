@@ -30,7 +30,7 @@ interface InputProps extends HTMLInputProps {
  * - Обрабатывает изменение текста и позицию каретки (caret).
  * - Отображает визуальную каретку (анимация/позиция курсора).
  * - Рендерит плейсхолдер перед вводом (например, `Введите имя>`).
- * 
+ *
  * Использует:
  * - `classNames` — утилита для динамического объединения классов.
  * - `memo` — оптимизация повторного рендера, если пропсы не изменились.
@@ -45,7 +45,6 @@ export const Input = memo((props: InputProps) => {
         autofocus,
         ...otherProps
     } = props;
-    
     const ref = useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
