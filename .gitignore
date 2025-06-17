@@ -16,9 +16,6 @@ env/
 venv/
 ENV/
 
-# Папка с переводами ключей
-/extractedTranslations
-
 # Результаты сборки
 /dist
 /build

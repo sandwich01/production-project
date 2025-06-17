@@ -1,16 +1,15 @@
-import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
+import { LoginSchema } from 'features/AuthByUsername';
 
 /**
  * Описание общей схемы состояния (StateSchema) приложения.
+ * Содержит поля:
+ * - user: часть состояния, связанная с пользователем (`UserSchema`).
+ * - loginForm: часть состояния, связаная с формой логина (`LoginSchema`).
  *
- * Содержит два поля:
- * - counter: часть состояния, связанная со счётчиком (CounterSchema).
- * - user: часть состояния, связанная с пользователем (UserSchema).
- *
- * Это интерфейс, который описывает, какие данные хранятся в общем состоянии приложения — например, в Redux или другом state-менеджере.
+ * Это интерфейс, который описывает, какие данные хранятся в общем состоянии приложения.
  */
 export interface StateSchema {
-    counter: CounterSchema;
     user: UserSchema;
+    loginForm: LoginSchema;
 }

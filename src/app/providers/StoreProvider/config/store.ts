@@ -1,6 +1,6 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
-import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
+import { loginReducer } from 'features/AuthByUsername';
 import { StateSchema } from './StateSchema';
 
 /**
@@ -10,15 +10,15 @@ import { StateSchema } from './StateSchema';
  * @returns {EnhancedStore<StateSchema>} Настроенное Redux-хранилище.
  *
  * Внутри:
- * - Определяются редьюсеры для частей состояния: counter и user.
+ * - Определяются редьюсеры для частей состояния
  * - Используется configureStore (из Redux Toolkit) для создания store.
  * - Включаются Redux DevTools, если приложение в режиме разработки (__IS_DEV__).
  */
 export function createReduxStore(initialState?: StateSchema) {
     // Корневой reducer
     const rootReducers: ReducersMapObject<StateSchema> = {
-        counter: counterReducer,
         user: userReducer,
+        loginForm: loginReducer,
     };
 
     return configureStore<StateSchema>({
