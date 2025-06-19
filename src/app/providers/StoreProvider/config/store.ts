@@ -1,29 +1,34 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
-import { loginReducer } from 'features/AuthByUsername';
 import { StateSchema } from './StateSchema';
+import { createReducerManager } from './reducerManager';
 
 /**
  * Функция для создания Redux-хранилища (store) с начальным состоянием.
- *
- * @param {StateSchema} [initialState] - Необязательное начальное состояние хранилища.
- * @returns {EnhancedStore<StateSchema>} Настроенное Redux-хранилище.
- *
  * Внутри:
  * - Определяются редьюсеры для частей состояния
  * - Используется configureStore (из Redux Toolkit) для создания store.
  * - Включаются Redux DevTools, если приложение в режиме разработки (__IS_DEV__).
  */
-export function createReduxStore(initialState?: StateSchema) {
-    // Корневой reducer
+export function createReduxStore(
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
+) {
     const rootReducers: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
         user: userReducer,
-        loginForm: loginReducer,
     };
 
-    return configureStore<StateSchema>({
-        reducer: rootReducers,
+    const reducerManager = createReducerManager(rootReducers);
+
+    const store = configureStore<StateSchema>({
+        reducer: reducerManager.reduce,
         devTools: __IS_DEV__,
         preloadedState: initialState,
     });
+
+    // @ts-ignore
+    store.reducerManager = reducerManager;
+
+    return store;
 }
