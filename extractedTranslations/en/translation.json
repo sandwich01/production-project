@@ -9,6 +9,7 @@
   "Increment": "increment",
   "Language": "Язык",
   "Login form": "Форма авторизации",
+  "PROFILE PAGE": "PROFILE PAGE",
   "Page not found": "Страница не найдена",
   "Refresh page": "Обновить страницу",
   "Russian": "Русский",
@@ -17,6 +18,16 @@
   "Sign out": "Выйти",
   "Throw error": "throw error",
   "Toggle": "toggle",
-  "You entered an incorrect username or password": "Вы ввели неверный логин или пароль"
+  "You entered an incorrect username or password": "Вы ввели неверный логин или пароль",
+  "Введите username": "",
+  "Введите пароль": "",
+  "Войти": "",
+  "Вы ввели неверный логин или пароль": "",
+  "Выйти": "",
+  "Короткий язык": "",
+  "Обновить страницу": "",
+  "Произошла непредвиденная ошибка": "",
+  "Страница не найдена": "",
+  "Форма авторизации": "",
+  "Язык": ""
 }
-

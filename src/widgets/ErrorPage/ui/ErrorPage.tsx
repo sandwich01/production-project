@@ -2,6 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button/Button';
 import cls from './ErrorPage.module.scss';
+import { memo } from 'react';
 
 interface ErrorPageProps {
     className?: string;
@@ -17,7 +18,7 @@ interface ErrorPageProps {
  * @example
  * <ErrorPage className="custom-error-style" />
  */
-export const ErrorPage = ({ className }: ErrorPageProps) => {
+export const ErrorPage = memo(({ className }: ErrorPageProps) => {
     const { t } = useTranslation('translation');
 
     const reloadPage = () => {
@@ -33,4 +34,4 @@ export const ErrorPage = ({ className }: ErrorPageProps) => {
             </Button>
         </div>
     );
-};
+});

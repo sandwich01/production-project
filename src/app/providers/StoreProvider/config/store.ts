@@ -32,3 +32,9 @@ export function createReduxStore(
 
     return store;
 }
+
+/**
+ * Тип для dispatch для того чтобы при его использовании подхватывались все типы для actions
+ */
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
+

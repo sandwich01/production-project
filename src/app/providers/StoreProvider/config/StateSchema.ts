@@ -7,6 +7,7 @@ import {
     Reducer,
     ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { ProfileSchema } from 'entities/Profile';
 
 /**
  * Описание общей схемы состояния (StateSchema) приложения.
@@ -19,6 +20,7 @@ export interface StateSchema {
     user: UserSchema;
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
+    profile?: ProfileSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

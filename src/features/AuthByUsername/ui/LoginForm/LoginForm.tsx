@@ -2,7 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { getLoginError } from 'features/AuthByUsername/model/selectors/getLoginError/getLoginError';
@@ -13,9 +13,11 @@ import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/Dynamic
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 
 export interface LoginFormProps {
     className?: string;
+    onSuccess: () => void;
 }
 
 const initialReducers: ReducersList = {
@@ -27,9 +29,9 @@ const initialReducers: ReducersList = {
  * Содержит поля ввода для логина и пароля, а также кнопку входа
  * Обрабатывает ошибки и состояние загрузки
  */
-const LoginForm = memo(({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
@@ -55,9 +57,13 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
      * Обработчик клика по кнопке "Войти"
      * Запускает асинхронную авторизацию
      */
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }));
-    }, [dispatch, password, username]);
+    const onLoginClick = useCallback(async () => {
+        //Проверка на то, что если у нас отработал dispatch, мы полностью закрываем модалку
+        const result = await dispatch(loginByUsername({ username, password }));
+        if (result.meta.requestStatus = 'fulfilled') {
+            onSuccess()
+        }
+    }, [onSuccess, dispatch, password, username]);
 
     return (
         <DynamicModuleLoader

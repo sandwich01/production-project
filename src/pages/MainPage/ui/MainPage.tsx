@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 
@@ -6,7 +6,7 @@ interface MainPageProps {
     className?: string;
 }
 
-const MainPage: FC<MainPageProps> = (props) => {
+const MainPage: FC<MainPageProps> = memo((props) => {
     const {
         className,
     } = props;
@@ -18,6 +18,6 @@ const MainPage: FC<MainPageProps> = (props) => {
             {t('Главная страница')}
         </div>
     );
-};
+});
 
 export default MainPage;
