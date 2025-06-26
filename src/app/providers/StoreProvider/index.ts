@@ -6,5 +6,5 @@ export {
     StoreProvider,
     createReduxStore,
     StateSchema,
-    AppDispatch
+    AppDispatch,
 };

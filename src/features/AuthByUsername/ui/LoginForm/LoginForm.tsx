@@ -10,10 +10,10 @@ import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLo
 import { getLoginPassword } from 'features/AuthByUsername/model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginUsername } from 'features/AuthByUsername/model/selectors/getLoginUsername/getLoginUsername';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 
 export interface LoginFormProps {
     className?: string;
@@ -58,10 +58,10 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
      * Запускает асинхронную авторизацию
      */
     const onLoginClick = useCallback(async () => {
-        //Проверка на то, что если у нас отработал dispatch, мы полностью закрываем модалку
+        // Проверка на то, что если у нас отработал dispatch, мы полностью закрываем модалку
         const result = await dispatch(loginByUsername({ username, password }));
-        if (result.meta.requestStatus = 'fulfilled') {
-            onSuccess()
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
         }
     }, [onSuccess, dispatch, password, username]);
 

@@ -29,7 +29,7 @@ module.exports = {
     plugins: [
         'react', // Плагин для проверки React кода
         '@typescript-eslint', // Поддержка правил TypeScript
-        'i18next', // Плагин перводов
+        'i18next', // Плагин переводов
         'jest', // Плагин тестирования
         'react-hooks', // Плагин для обработки хуков в FC
     ],
@@ -44,13 +44,15 @@ module.exports = {
         indent: [2, 4],
         // Разрешить использование JSX в файлах с расширениями .js, .jsx, .tsx
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
-        // Выключить ошибку при ненайденном импорте (например, через webpack aliases), использую aliases
+        // Выключить ошибку при ненайденном импорте (например, через webpack aliases), используем aliases
         'import/no-unresolved': 'off',
         // Не требовать default export
         'import/prefer-default-export': 'off',
-        // Предупреждать о неиспользуемых переменных вместо ошибки
-        'no-unused-vars': 'warn',
-        // Не требовать defaultProps у React компонентов, чтобы использовать именованые
+        // Отключаем стандартное правило, так как оно не учитывает специфику TypeScript
+        'no-unused-vars': 'off',
+        // Включаем правило поиска неиспользуемых переменных для TypeScript — как предупреждение
+        '@typescript-eslint/no-unused-vars': ['warn'],
+        // Не требовать defaultProps у React компонентов, чтобы использовать именованные
         'react/require-default-props': 'off',
         // Предупредить при использовании {...props} в JSX
         'react/jsx-props-no-spreading': 'warn',
@@ -74,21 +76,38 @@ module.exports = {
                 ignoreAttribute: ['data-testid', 'to'],
             },
         ],
-        // Проверка максимальной длины скроки кода
+        // Проверка максимальной длины строки кода
         'max-len': ['error', { code: 180 }],
         // Не требовать импорт React в файлах с JSX (React 17+)
         'react/react-in-jsx-scope': 'off',
-        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+        // Проверка соблюдения правил хуков React
+        'react-hooks/rules-of-hooks': 'error',
+        // Проверка зависимостей в useEffect и других хуках
+        'react-hooks/exhaustive-deps': 'error',
+        // Отключаем обязательные обработчики событий клавиатуры при клике
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
+        // Разрешаем менять параметры функции (например, state в redux)
         'no-param-reassign': 'off',
+        // Запрещаем пустую строку в конце файла
+        'eol-last': ['error', 'never'],
+        // Запрещаем пустую строку после return
+        'padding-line-between-statements': [
+            'error',
+            { blankLine: 'never', prev: 'return', next: '*' },
+        ],
+        // Отключаем проверку PropTypes, потому что используем TypeScript
+        'react/prop-types': 'off',
+        // Разрешить использование {...props} в JSX
+        'react/jsx-props-no-spreading': 'off',
     },
 
     // Глобальные переменные проекта
     globals: {
         __IS_DEV__: true, // Например, для режима разработки
     },
+
+    // Переопределение правил для тестов и stories
     overrides: [
         {
             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
