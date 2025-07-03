@@ -1,4 +1,4 @@
-type Mods = Record<string, boolean | string>
+export type Mods = Record<string, boolean | string | undefined>
 
 /**
  * Утилитная функция для объединения CSS-классов с поддержкой условных модификаторов.
@@ -12,7 +12,7 @@ type Mods = Record<string, boolean | string>
  * classNames('button', { primary: true, disabled: false }, ['large', 'rounded'])
  * // вернёт: "button large rounded primary"
  */
-export function classNames(cls: string, mods: Mods = {}, additional: string[] = []): string {
+export function classNames(cls: string, mods: Mods = {}, additional: Array<string | undefined> = []): string {
     return [
         cls,
         ...additional.filter(Boolean),

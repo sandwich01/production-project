@@ -100,6 +100,7 @@ module.exports = {
         'react/prop-types': 'off',
         // Разрешить использование {...props} в JSX
         'react/jsx-props-no-spreading': 'off',
+        'no-undef': 'off',
     },
 
     // Глобальные переменные проекта
