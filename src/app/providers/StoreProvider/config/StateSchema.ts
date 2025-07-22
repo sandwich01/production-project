@@ -1,15 +1,13 @@
+import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
 import {
-    AnyAction,
-    CombinedState,
-    EnhancedStore,
-    Reducer,
-    ReducersMapObject,
+    AnyAction, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { CombinedState, Dispatch } from 'redux';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
-import { To, NavigateOptions } from 'react-router-dom';
+import { NavigateOptions, To } from 'react-router';
 
 /**
  * Описание общей схемы состояния (StateSchema) приложения.
@@ -19,7 +17,9 @@ import { To, NavigateOptions } from 'react-router-dom';
  * - loginForm: асинхронно получаемая часть состояния, связаная с формой логина (`LoginSchema`).
  */
 export interface StateSchema {
+    counter: CounterSchema;
     user: UserSchema;
+
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
@@ -46,4 +46,5 @@ export interface ThunkExtraArg {
 export interface ThunkConfig<T> {
     rejectValue: T;
     extra: ThunkExtraArg;
+    state: StateSchema;
 }

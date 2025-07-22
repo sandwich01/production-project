@@ -10,8 +10,9 @@ import cls from './Button.module.scss';
  */
 export enum ButtonTheme {
     CLEAR = 'clear',
-    OUTLINE = 'outline',
     CLEAR_INVERTED = 'clearInverted',
+    OUTLINE = 'outline',
+    OUTLINE_RED = 'outline_red',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted',
 }
@@ -22,7 +23,7 @@ export enum ButtonSize {
     XL = 'size_xl',
 }
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     className?: string;
     theme?: ButtonTheme;
     square?: boolean;
@@ -31,20 +32,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children?: ReactNode;
 }
 
-/**
- * Кастомная кнопка с поддержкой тем оформления.
- * Обертка над нативным <button>, расширенная возможностью применения стилей через темы.
- *
- * @component
- * @param {React.ReactNode} children - Содержимое кнопки
- * @param {string} [className] - Дополнительный класс для стилизации
- * @param {ButtonTheme} [theme] - Тема кнопки (по умолчанию: clear)
- * @param {object} [otherProps] - Любые другие props, поддерживаемые тегом <button>
- *
- * @example
- * <Button theme={ThemeButton.CLEAR}>Нажми меня</Button>
- */
-export const Button: FC<ButtonProps> = memo((props) => {
+export const Button = memo((props: ButtonProps) => {
     const {
         className,
         children,
