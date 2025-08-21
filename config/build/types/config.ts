@@ -43,6 +43,7 @@ export interface BuildEnv {
  * @property {BuildPaths} paths - Объект с путями к файлам и папкам проекта
  * @property {boolean} isDev - Флаг режима разработки
  * @property {number} port - Порт для devServer
+ * @property {'storybook' | 'frontend' | 'jest'} project - Вариант конфигурации
  */
 export interface BuildOptions {
     mode: BuildMode;
@@ -50,4 +51,5 @@ export interface BuildOptions {
     isDev: boolean;
     port: number;
     apiUrl: string;
+    project: 'storybook' | 'frontend' | 'jest';
 }

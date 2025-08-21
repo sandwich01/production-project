@@ -107,6 +107,7 @@ module.exports = {
     globals: {
         __IS_DEV__: true, // Например, для режима разработки
         __API__: true,
+        __PROJECT__: true
     },
 
     // Переопределение правил для тестов и stories

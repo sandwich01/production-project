@@ -12,7 +12,9 @@ import { BuildOptions } from './types/config';
  * @param {string} options.paths.html - Путь к HTML-шаблону
  * @returns {webpack.WebpackPluginInstance[]} Массив экземпляров webpack-плагинов
  */
-export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({
+    paths, isDev, apiUrl, project,
+}: BuildOptions): webpack.WebpackPluginInstance[] {
     const plugins = [
         // Генерирует HTML-файл на основе шаблона и внедряет туда бандлы
         new HtmlWebpackPlugin({
@@ -32,6 +34,7 @@ export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.We
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
+            __PROJECT__: JSON.stringify(project),
         }),
     ];
 
