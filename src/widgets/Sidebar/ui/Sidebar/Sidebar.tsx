@@ -3,11 +3,11 @@ import { memo, useMemo, useState } from 'react';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
+import { LangSwitcher } from 'widgets/LangSwitcher';
+import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import cls from './Sidebar.module.scss';
 import { SidebarItemsList } from '../../model/items';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
-import { LangSwitcher } from 'widgets/LangSwitcher';
-import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 
 interface SidebarProps {
     className?: string;

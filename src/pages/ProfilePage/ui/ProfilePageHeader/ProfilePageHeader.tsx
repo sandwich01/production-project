@@ -3,12 +3,12 @@ import { Text } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import cls from './ProfilePageHeader.module.scss';
 import { profileActions } from 'entities/Profile';
 import { getProfileReadonly } from 'entities/Profile/model/selectors/getProfileReadonly/getProfileReadonly';
 import { updateProfileData } from 'entities/Profile/model/services/updateProfileData/updateProfileData';
 import { useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import cls from './ProfilePageHeader.module.scss';
 
 interface ProfilePageHeaderProps {
     className?: string;

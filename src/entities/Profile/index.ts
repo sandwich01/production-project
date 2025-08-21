@@ -15,3 +15,5 @@ export {
 export {
     ProfileCard,
 } from './ui/ProfileCard/ProfileCard';
+
+export { getProfileValidateErrors } from './model/selectors/getProfileValidateErrors/getProfileValidateErrors';
