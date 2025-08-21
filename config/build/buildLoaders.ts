@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import { BuildOptions } from './types/config';
 import { buildCssLoader } from './loaders/buildCssLoader';
+import { buildBabelLoader } from './loaders/buildBabelLoader';
 
 /**
  * Функция, возвращающая массив webpack-loader'ов на основе режима разработки.
@@ -9,7 +10,9 @@ import { buildCssLoader } from './loaders/buildCssLoader';
  * @param {boolean} options.isDev - Режим разработки (development)
  * @returns {webpack.RuleSetRule[]} Массив правил (лоадеров) для webpack
  */
-export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
+export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+    const { isDev } = options;
+
     const cssLoader = buildCssLoader(isDev);
 
     /**
@@ -47,25 +50,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
      * Запуск транспилятора babel с плагином для сборки ключей переводов
      *
      */
-    const babelLoader = {
-        test: /\.(ts|js|jsx|tsx)$/,
-        exclude: /node_modules/,
-        use: {
-            loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-env'],
-                plugins: [
-                    [
-                        'i18next-extract',
-                        {
-                            locales: ['ru', 'en'],
-                            keyAsDefaultValue: true,
-                        },
-                    ],
-                ],
-            },
-        },
-    };
+    const babelLoader = buildBabelLoader(options);
 
     /**
      *  Порядок loaders очень важен для сборки!!!
