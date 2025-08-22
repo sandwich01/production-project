@@ -24,6 +24,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
             filename: '[name].[contenthash].js', // Имя выходного JS-файла с хэшем для кэширования
             path: paths.build, // Папка, куда будет собираться проект (например, dist)
             clean: true, // Очищать папку перед новой сборкой
+            publicPath: '/', // базовый URL, который будет проставляться перед всеми ресурсами (chunks, картинки, lazy-loaded модули)
         },
         plugins: buildPlugins(options), // Подключённые плагины (HTML, CSS экстрактор и т.д.)
         module: {
