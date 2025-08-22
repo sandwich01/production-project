@@ -7,7 +7,9 @@ import { User, UserSchema } from '../types/user';
  *
  * @type {UserSchema}
  */
-const initialState: UserSchema = {};
+const initialState: UserSchema = {
+    _inited: false,
+};
 
 /**
  * Redux-слайс, отвечающий за состояние пользователя (`authData`)
@@ -35,6 +37,7 @@ export const userSlice = createSlice({
             if (user) {
                 state.authData = JSON.parse(user);
             }
+            state._inited = true;
         },
         /**
          * Очищает данные пользователя из состояния и localStorage
