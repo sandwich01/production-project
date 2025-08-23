@@ -20,6 +20,11 @@ export enum TextAlign {
     CENTER = 'center',
 }
 
+export enum TextSize {
+    M = 'size_m',
+    L = 'size_l',
+}
+
 /**
  * Пропсы для компонента Text
  *
@@ -27,6 +32,8 @@ export enum TextAlign {
  * @property {string} [title] - Заголовок текстового блока (`string`)
  * @property {string} [text] - Основной текст (`string`)
  * @property {TextTheme} [theme] - Тема оформления текста (`TextTheme`)
+ * @property {TextTheme} [align] - Выравнивание текста (`TextTheme`)
+ * @property {TextTheme} [size] - Размер текста (`TextTheme`)
  */
 interface TextProps {
     className?: string;
@@ -34,6 +41,7 @@ interface TextProps {
     text?: string;
     theme?: TextTheme;
     align?: TextAlign;
+    size?: TextSize;
 }
 
 /**
@@ -47,11 +55,13 @@ export const Text = memo((props: TextProps) => {
         title,
         theme = TextTheme.PRIMARY,
         align = TextAlign.LEFT,
+        size = TextSize.M,
     } = props;
 
     const mods: Mods = {
         [cls[theme]]: true,
         [cls[align]]: true,
+        [cls[size]]: true,
     };
 
     return (

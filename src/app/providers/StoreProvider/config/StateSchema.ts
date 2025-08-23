@@ -8,6 +8,7 @@ import { CombinedState, Dispatch } from 'redux';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router';
+import { ArticleDetailsSchema } from 'entities/Article';
 
 /**
  * Описание общей схемы состояния (StateSchema) приложения.
@@ -23,6 +24,7 @@ export interface StateSchema {
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
+    articleDetails?: ArticleDetailsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
