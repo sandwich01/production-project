@@ -3,10 +3,12 @@
  *
  * @property {string} id - Уникальный идентификатор пользователя.
  * @property {string} username - Имя пользователя (логин).
+ * @property {string | undefined | null} avatar - Аватар пользователя.
  */
 export interface User {
     id: string;
     username: string;
+    avatar?: string;
 }
 
 /**

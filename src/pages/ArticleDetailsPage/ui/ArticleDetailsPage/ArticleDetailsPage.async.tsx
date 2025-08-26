@@ -2,6 +2,6 @@ import { lazy } from 'react';
 
 export const ArticleDetailsPageAsync = lazy(() => new Promise((resolve) => {
     // @ts-ignore
-    // Задержка для того чтобы видеть загрузку
+    // ТАК В РЕАЛЬНЫХ ПРОЕКТАХ НЕ ДЕЛАТЬ!!!!! ДЕЛАЕМ ДЛЯ КУРСА!
     setTimeout(() => resolve(import('./ArticleDetailsPage')), 1500);
 }));

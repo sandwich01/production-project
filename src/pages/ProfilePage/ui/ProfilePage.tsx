@@ -11,7 +11,7 @@ import { getProfileReadonly } from 'entities/Profile/model/selectors/getProfileR
 import { useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Currency, Country } from 'shared/const/common';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { TextTheme, Text } from 'shared/ui/Text/Text';
 import { ValidateProfileError } from 'entities/Profile/model/types/profile';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
